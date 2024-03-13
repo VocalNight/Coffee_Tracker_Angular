@@ -1,0 +1,21 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          {categories.map(category => (
+                <tr key={category.Id}>
+                    <td>{category.Quantity}</td>
+                    <td>{Category.Date}</td> 
+                </tr>
+            ))} 
+        </tbody>
+    </table>
+</div>
