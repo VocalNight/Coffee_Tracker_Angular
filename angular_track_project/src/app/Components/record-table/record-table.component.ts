@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoffeeRecords } from '../../../Model/CoffeeRecords';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-record-table',
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class RecordTableComponent implements OnInit {
 
-  @Input() coffeeRecords: Observable<any> = new Observable;
+  @Input() coffeeRecords!: BehaviorSubject<any>;
   filteredRecord: CoffeeRecords[] = [];
   dateField: Date = new Date();
 

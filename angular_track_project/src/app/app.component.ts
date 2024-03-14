@@ -5,7 +5,7 @@ import { RecordTableComponent } from './Components/record-table/record-table.com
 import { RecordModalComponent } from './Components/record-modal/record-modal.component';
 import { CoffeeTrackerHttpService } from '../Services/coffee-tracker-http.service';
 import { CoffeeRecords } from '../Model/CoffeeRecords';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'Angular Coffee Tracker';
-  coffeeRecords: Observable<any> = new Observable;
+  coffeeRecords = new BehaviorSubject(null);
   showModal: boolean = false;
 
   constructor(private recordsHttpService: CoffeeTrackerHttpService)  {}
@@ -26,7 +26,10 @@ export class AppComponent implements OnInit {
   }
 
   getRecords() {
-    this.coffeeRecords = this.recordsHttpService.getRecords('tracker');
+    this.recordsHttpService.getRecords('tracker').subscribe({
+      next: records => this.coffeeRecords.next(records) ,
+      error: e => console.error("Api error", e)
+  });;
   }
 
   onDelete(id: number) {

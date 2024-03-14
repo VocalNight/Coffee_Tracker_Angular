@@ -43,8 +43,6 @@ app.UseHttpsRedirection();
 
 app.MapPost("/tracker", async ( CoffeeRecords item, CoffeeContext db ) =>
 {
-
-
     db.CoffeeRecords.Add(item);
     await db.SaveChangesAsync();
 
