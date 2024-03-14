@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CoffeeTrackerHttpService {
 
-  private apiUrl = "https://localhost:7036/api"
+  private apiUrl = "https://localhost:7184"
 
   getApiRoute() {
     return this.apiUrl;

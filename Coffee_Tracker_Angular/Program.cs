@@ -52,7 +52,7 @@ app.MapPost("/tracker", async ( CoffeeRecords item, CoffeeContext db ) =>
     db.CoffeeRecords.Add(item);
     await db.SaveChangesAsync();
 
-    return (Results.Created($"/ShoppingList/{item.Id}", item));
+    return (Results.Created($"/tracker/{item.Id}", item));
 });
 
 app.MapGet("/tracker", async ( CoffeeContext db ) =>

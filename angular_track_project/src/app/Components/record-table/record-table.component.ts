@@ -11,7 +11,7 @@ import { CoffeeTrackerHttpService } from '../../../Services/coffee-tracker-http.
 })
 export class RecordTableComponent implements OnInit {
 
-  Records: CoffeeRecords[] = [];
+  records: CoffeeRecords[] = [];
 
   constructor(private recordsHttpService: CoffeeTrackerHttpService) { }
 
@@ -20,8 +20,8 @@ export class RecordTableComponent implements OnInit {
   }
 
   getRecords() {
-    this.recordsHttpService.getRecords('coffee').subscribe((result) => {
-      this.Records = result;
+    this.recordsHttpService.getRecords('tracker').subscribe((result) => {
+      this.records = result;
     })
   }
 }

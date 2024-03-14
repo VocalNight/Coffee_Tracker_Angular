@@ -2,20 +2,20 @@
     <table>
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Quantity</th>
-            </tr>
-            <tr>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody>
-
-          {categories.map(category => (
-                <tr key={category.Id}>
-                    <td>{category.Quantity}</td>
-                    <td>{Category.Date}</td> 
-                </tr>
-            ))} 
+           
+          @for (record of records; track record) {
+            <tr>
+                <td>{{record.id}}</td>
+                <td>{{record.quantity}} ml</td>
+                <td>{{record.date}}</td> 
+            </tr>
+            }
         </tbody>
     </table>
 </div>
