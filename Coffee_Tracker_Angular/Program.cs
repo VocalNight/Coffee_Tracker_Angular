@@ -44,10 +44,6 @@ app.UseHttpsRedirection();
 app.MapPost("/tracker", async ( CoffeeRecords item, CoffeeContext db ) =>
 {
 
-    if (item.Id <= 0)
-    {
-        return Results.NoContent();
-    }
 
     db.CoffeeRecords.Add(item);
     await db.SaveChangesAsync();
@@ -70,15 +66,6 @@ app.MapDelete("/tracker/{id}", async ( int id, CoffeeContext db ) =>
     return Results.NotFound();
 });
 
-app.MapPut("/tracker/{id}", async ( int id, CoffeeRecords shoppingItem, CoffeeContext db ) =>
-{
-    var item = await db.CoffeeRecords.FindAsync(id);
-
-// update
-
-    await db.SaveChangesAsync();
-    return Results.NoContent();
-});
 
 
 

@@ -1,8 +1,8 @@
 <div>
 
     <label>
-        Enter the Date:
-        <input type="date" name="date" [(ngModel)]="dateField" (ngModelChange)="filterDate($event)" >
+        <label class="m-2 text-stone-400 font-bold" for="name">Date Filter</label>
+        <input class="shadow bg-stone-500 text-gray-950 appearance-none border rounded py-2 px-3  leading-tight focus:outline-none focus:shadow-outline m-2" id="quantity" type="date" name="date" [(ngModel)]="dateField" (ngModelChange)="filterDate($event)" >
         <br>
     </label>
 

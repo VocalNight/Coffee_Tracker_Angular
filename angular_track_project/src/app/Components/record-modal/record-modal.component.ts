@@ -17,7 +17,6 @@ export class RecordModalComponent {
   addItem() {
     this.recordsHttpService.postItem(
       {
-        id: 0,
         quantity: this.coffeeQuantity,
         date: Date.now
       }, 

@@ -23,8 +23,6 @@ export class RecordTableComponent implements OnInit {
   }
 
   filterDate(event: any) {
-    console.log(this.dateField);
-    console.log(this.records);
     this.filteredRecord = this.records.filter(record => record.date == this.dateField);
   }
 
