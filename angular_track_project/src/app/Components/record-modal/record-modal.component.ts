@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CoffeeTrackerHttpService } from '../../../Services/coffee-tracker-http.service';
 
@@ -12,14 +12,14 @@ import { CoffeeTrackerHttpService } from '../../../Services/coffee-tracker-http.
 export class RecordModalComponent {
   coffeeQuantity = 0;
 
+  @Output() addedItem = new EventEmitter<any>();
+
   constructor(private recordsHttpService: CoffeeTrackerHttpService) { }
 
   addItem() {
-    this.recordsHttpService.postItem(
-      {
-        quantity: this.coffeeQuantity,
-        date: Date.now
-      }, 
-      'tracker');
+    this.addedItem.emit({
+      quantity: this.coffeeQuantity,
+      date: new Date()
+    });
   }
 }

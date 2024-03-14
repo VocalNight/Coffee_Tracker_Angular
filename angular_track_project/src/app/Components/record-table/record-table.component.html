@@ -2,8 +2,14 @@
 
     <label>
         <label class="m-2 text-stone-400 font-bold" for="name">Date Filter</label>
-        <input class="shadow bg-stone-500 text-gray-950 appearance-none border rounded py-2 px-3  leading-tight focus:outline-none focus:shadow-outline m-2" id="quantity" type="date" name="date" [(ngModel)]="dateField" (ngModelChange)="filterDate($event)" >
+        <input class="shadow bg-stone-500 text-gray-950 appearance-none border rounded py-2 px-3  leading-tight focus:outline-none focus:shadow-outline m-2" id="quantity" type="date" name="date" [(ngModel)]="dateField">
+        <button 
+                    type="button" 
+                    class="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded"
+                    (click)="onFilter()"
+                    >Filter</button>
         <br>
+        
     </label>
 
     <table>
@@ -31,4 +37,9 @@
             }
         </tbody>
     </table>
+    <button 
+                    type="button" 
+                    class="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded m-2"
+                    (click)="addRecord()"
+                    >Add Record</button>
 </div>

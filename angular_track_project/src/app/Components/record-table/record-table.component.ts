@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoffeeRecords } from '../../../Model/CoffeeRecords';
-import { CoffeeTrackerHttpService } from '../../../Services/coffee-tracker-http.service';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-record-table',
@@ -12,34 +12,33 @@ import { FormsModule } from '@angular/forms';
 })
 export class RecordTableComponent implements OnInit {
 
-  records: CoffeeRecords[] = [];
+  @Input() coffeeRecords: Observable<any> = new Observable;
   filteredRecord: CoffeeRecords[] = [];
   dateField: Date = new Date();
 
-  constructor(private recordsHttpService: CoffeeTrackerHttpService) { }
+  @Output() showModal = new EventEmitter<boolean>();
+  @Output() deleteClicked = new EventEmitter<number>();
 
   ngOnInit(): void {
-    this.getRecords();
+    this.coffeeRecords.subscribe({
+      next: records => this.filteredRecord = records,
+      error: e => console.error("Api error", e)
+  });
+  }
+  
+  onFilter() {
+    this.coffeeRecords.subscribe({
+     next: records => {
+      this.filteredRecord = records.filter((record: { date: Date; }) => record.date == this.dateField)},
+     error: e => console.error("Api error", e)
+    });
   }
 
-  filterDate(event: any) {
-    this.filteredRecord = this.records.filter(record => record.date == this.dateField);
-  }
-
-  getRecords() {
-    this.recordsHttpService.getRecords('tracker').subscribe((result) => {
-      this.records = result;
-      this.filteredRecord = this.records;
-    })
+  addRecord() {
+    this.showModal.emit(true);
   }
 
   deleteItem(id: number) {
-    this.recordsHttpService.deleteRow(id, 'tracker').subscribe({
-      next: (r) => {
-        console.log("Api sucess", r);
-        this.getRecords();
-      },
-      error: (e) => console.error("Api error", e)
-    });
+    this.deleteClicked.emit(id);
   }
 }

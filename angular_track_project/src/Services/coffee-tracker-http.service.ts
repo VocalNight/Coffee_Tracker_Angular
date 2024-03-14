@@ -23,15 +23,9 @@ export class CoffeeTrackerHttpService {
     return this.http.get<any>(`${this.apiUrl}/${model}`);
   }
 
-  postItem(item: any, model: string) {
-    this.http.post(`${this.apiUrl}/${model}`, item)
-      .subscribe({
-        next: (r) => console.log("sucess"),
-        error: (e) => { 
-          //this.dialog.open(DialogQuote, {data: e.error})
-          console.log(e);
-        }
-      })
+  postItem(item: any, model: string): Observable<any> {
+   return this.http.post(`${this.apiUrl}/${model}`, item);
+      
   }
 
   updateItem(item: any, model: string) {

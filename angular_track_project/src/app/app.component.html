@@ -1,3 +1,5 @@
-<app-record-table></app-record-table>
+<app-record-table [coffeeRecords]="coffeeRecords" (deleteClicked)="onDelete($event)" (showModal)="onInclude($event)"></app-record-table>
 
-<app-record-modal></app-record-modal>
+@if (showModal) {
+<app-record-modal (addedItem)="onAddedItem($event)"></app-record-modal>
+}
