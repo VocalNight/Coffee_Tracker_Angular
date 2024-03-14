@@ -17,9 +17,17 @@ export class RecordModalComponent {
   constructor(private recordsHttpService: CoffeeTrackerHttpService) { }
 
   addItem() {
+    let date = new Date();
+    let currentMonth = date.getMonth() + 1;
+  
+    console.log(date.getDate().toString().length);
+
+    let month = date.getMonth().toString().length == 1 ? "0" + currentMonth : date.getMonth();
+    let day = date.getDate().toString().length == 1 ? "0" + date.getDate() : date.getDate();
+
     this.addedItem.emit({
       quantity: this.coffeeQuantity,
-      date: new Date()
+      date: [date.getFullYear(), month, day].join('-')
     });
   }
 }

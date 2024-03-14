@@ -20,6 +20,10 @@ export class RecordTableComponent implements OnInit {
   @Output() deleteClicked = new EventEmitter<number>();
 
   ngOnInit(): void {
+    this.getRecords();
+  }
+
+  getRecords() {
     this.coffeeRecords.subscribe({
       next: records => this.filteredRecord = records,
       error: e => console.error("Api error", e)
@@ -29,9 +33,14 @@ export class RecordTableComponent implements OnInit {
   onFilter() {
     this.coffeeRecords.subscribe({
      next: records => {
+      console.log(records);
       this.filteredRecord = records.filter((record: { date: Date; }) => record.date == this.dateField)},
      error: e => console.error("Api error", e)
     });
+  }
+
+  onClear() {
+    this.getRecords();
   }
 
   addRecord() {

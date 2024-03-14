@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   onAddedItem(item: any) {
+    console.log(item);
     this.recordsHttpService.postItem(item, 'tracker')
       .subscribe({
         next: (r) => {
