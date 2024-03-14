@@ -1,4 +1,11 @@
 <div>
+
+    <label>
+        Enter the Date:
+        <input type="date" name="date" [(ngModel)]="dateField" (ngModelChange)="filterDate($event)" >
+        <br>
+    </label>
+
     <table>
         <thead>
             <tr>
@@ -9,7 +16,7 @@
         </thead>
         <tbody>
            
-          @for (record of records; track record) {
+          @for (record of filteredRecord; track record) {
             <tr>
                 <td>{{record.id}}</td>
                 <td>{{record.quantity}} ml</td>

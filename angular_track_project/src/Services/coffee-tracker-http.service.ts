@@ -23,16 +23,10 @@ export class CoffeeTrackerHttpService {
     return this.http.get<any>(`${this.apiUrl}/${model}`);
   }
 
-  postItem(item: any, model: string, route: Router) {
+  postItem(item: any, model: string) {
     this.http.post(`${this.apiUrl}/${model}`, item)
       .subscribe({
-        next: (r) => {
-          setTimeout(() => 
-          {
-            route.navigate([model]);
-          },
-            1000);
-        },
+        next: (r) => console.log("sucess"),
         error: (e) => { 
           //this.dialog.open(DialogQuote, {data: e.error})
           console.log(e);
