@@ -24,4 +24,14 @@ export class RecordTableComponent implements OnInit {
       this.records = result;
     })
   }
+
+  deleteItem(id: number) {
+    this.recordsHttpService.deleteRow(id, 'tracker').subscribe({
+      next: (r) => {
+        console.log("Api sucess", r);
+        this.getRecords();
+      },
+      error: (e) => console.error("Api error", e)
+    });
+  }
 }

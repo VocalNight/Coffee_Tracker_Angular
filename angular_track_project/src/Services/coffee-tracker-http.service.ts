@@ -49,14 +49,9 @@ export class CoffeeTrackerHttpService {
       })
   }
 
-  deleteRow(id: number, model: string) {
+  deleteRow(id: number, model: string): Observable<any> {
 
-    this.http.delete(`${this.apiUrl}/${model}/${id}`)
-      .subscribe({
-        next: (r) => {
-          console.log("Api sucess", r);
-        },
-        error: (e) => console.error("Api error", e)
-      })
+   return this.http.delete(`${this.apiUrl}/${model}/${id}`);
+      
   }
 }
