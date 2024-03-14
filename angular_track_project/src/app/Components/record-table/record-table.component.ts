@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoffeeRecords } from '../../../Model/CoffeeRecords';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-record-table',
@@ -27,15 +27,16 @@ export class RecordTableComponent implements OnInit {
     this.coffeeRecords.subscribe({
       next: records => this.filteredRecord = records,
       error: e => console.error("Api error", e)
-  });
+    });
   }
-  
+
   onFilter() {
     this.coffeeRecords.subscribe({
-     next: records => {
-      console.log(records);
-      this.filteredRecord = records.filter((record: { date: Date; }) => record.date == this.dateField)},
-     error: e => console.error("Api error", e)
+      next: records => {
+        console.log(records);
+        this.filteredRecord = records.filter((record: { date: Date; }) => record.date == this.dateField)
+      },
+      error: e => console.error("Api error", e)
     });
   }
 

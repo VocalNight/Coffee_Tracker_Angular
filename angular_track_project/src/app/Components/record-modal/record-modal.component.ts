@@ -19,7 +19,7 @@ export class RecordModalComponent {
   addItem() {
     let date = new Date();
     let currentMonth = date.getMonth() + 1;
-  
+
     console.log(date.getDate().toString().length);
 
     let month = date.getMonth().toString().length == 1 ? "0" + currentMonth : date.getMonth();

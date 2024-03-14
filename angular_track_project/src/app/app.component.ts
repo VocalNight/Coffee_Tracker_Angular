@@ -4,8 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { RecordTableComponent } from './Components/record-table/record-table.component';
 import { RecordModalComponent } from './Components/record-modal/record-modal.component';
 import { CoffeeTrackerHttpService } from '../Services/coffee-tracker-http.service';
-import { CoffeeRecords } from '../Model/CoffeeRecords';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ export class AppComponent implements OnInit {
   coffeeRecords = new BehaviorSubject(null);
   showModal: boolean = false;
 
-  constructor(private recordsHttpService: CoffeeTrackerHttpService)  {}
+  constructor(private recordsHttpService: CoffeeTrackerHttpService) { }
 
   ngOnInit(): void {
     this.getRecords();
@@ -27,9 +26,9 @@ export class AppComponent implements OnInit {
 
   getRecords() {
     this.recordsHttpService.getRecords('tracker').subscribe({
-      next: records => this.coffeeRecords.next(records) ,
+      next: records => this.coffeeRecords.next(records),
       error: e => console.error("Api error", e)
-  });;
+    });;
   }
 
   onDelete(id: number) {
@@ -51,10 +50,10 @@ export class AppComponent implements OnInit {
           this.getRecords();
           this.showModal = false;
         },
-        error: (e) => { 
+        error: (e) => {
           console.error("Api error", e);
         }
       })
-    
+
   }
 }
