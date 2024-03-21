@@ -16,6 +16,7 @@ export class RecordTableComponent implements OnInit {
   filteredRecord: CoffeeRecords[] = [];
   dateFieldStart: Date = new Date();
   dateFieldEnd: Date = new Date();
+  dateFieldValid = true;
 
   @Output() showModal = new EventEmitter<boolean>();
   @Output() deleteClicked = new EventEmitter<number>();
@@ -32,6 +33,12 @@ export class RecordTableComponent implements OnInit {
   }
 
   onFilter() {
+    if (this.dateFieldStart > this.dateFieldEnd) {
+      this.dateFieldValid = false;
+      return;
+    }
+    this.dateFieldValid = true;
+
     this.coffeeRecords.subscribe({
       next: records => {
         console.log(records);
